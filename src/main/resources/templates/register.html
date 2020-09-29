@@ -107,6 +107,8 @@
         });
     </script>
     <script>
+        var url = window.location.origin + "/mushroom/signin/" + "activeVip";
+        // var url = window.location.origin + "/activeVip";
         layui.use(['layer', 'form', 'element'], function(){
             var layer = layui.layer
                 ,form = layui.form
@@ -135,7 +137,7 @@
             // 激活 VIP
             //表单取值
             layui.$('#active').on('click', function(){
-                let week = /^第[\d{1}]周$/;
+                let week = /^第\d{1,2}周$/;
                 var data = form.val('activeVip');
                 let { phone, vipcode, weeks } = data;
                 console.log(!week.test(weeks))
@@ -149,7 +151,7 @@
                 }
                 if (tip === "") {
                     $.ajax({
-                        url: window.location.origin + "/" + "activeVip",
+                        url,
                         method: "post",
                         data: data,
                         success: (res) => {
@@ -167,7 +169,7 @@
             //监听提交
             form.on('submit(formSubmit)', function(data){
                 let re = /[^\u4E00-\u9FA5]/;
-                let week = /^第[\d{1}]周$/;
+                let week = /^第\d{1,2}周$/;
                 let tip = "";
                 let {address, city, description, longitude, password, phone, province, vipcode, weeks} = data.field;
                 if (phone.length !== 11) {
@@ -183,7 +185,7 @@
                 }
                 if (tip === "") {
                     $.ajax({
-                        url: window.location.origin + "/" + "useCodeReg",
+                        url,
                         method: "post",
                         data: data.field,
                         success: (res) => {

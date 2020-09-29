@@ -59,7 +59,7 @@ public class MuSignInServiceImpl implements MuSignInService {
     public void weekArticle() throws Exception {
         List<MuVip> vipList = muVipMapper.selectList(null);
         // 初始化状态（测试版请勿打开）
-//        muVipService.initVipState();
+        muVipService.initVipState();
         for (MuVip muVip : vipList) {
             MushroomWeekArticle(muUserMapper.selectById(muVip.getUserId()));
         }

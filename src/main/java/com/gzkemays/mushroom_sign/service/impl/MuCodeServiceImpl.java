@@ -51,7 +51,7 @@ public class MuCodeServiceImpl extends ServiceImpl<MuCodeMapper, MuCode> impleme
         MuCode muCode = baseMapper.selectOne(wrapper);
         if (muCode != null) {
             QueryWrapper<MuCode> state = new QueryWrapper<>();
-                state.select("is_used");
+                state.select("is_used").eq("vipcode",code.getVipcode());
             muCode.setIsUsed(false);
             baseMapper.update(muCode,state);
         }

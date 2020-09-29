@@ -22,8 +22,17 @@ import org.springframework.stereotype.Controller;
  * @since 2020-09-27
  */
 @RestController
-
 public class MuVipController {
-
+    @Autowired
+    private MuVipService muVipService;
+    @PostMapping("/activeVip")
+    @ResponseBody
+    private Result activeVip (MuVipRegVO muVipRegVO) throws Exception {
+        System.out.println("muVipRegVO = " + muVipRegVO);
+        if (muVipService.registerVip(muVipRegVO)) {
+            return MuResultUtils.OK("激活成功！");
+        }
+        return MuResultUtils.FAIL("激活失败！");
+    }
 }
 

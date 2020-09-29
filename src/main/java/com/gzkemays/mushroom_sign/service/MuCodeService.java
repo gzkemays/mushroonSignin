@@ -13,6 +13,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface MuCodeService extends IService<MuCode> {
     boolean getCodeState (String code);
+    boolean hasCode (String code);
     void saveOrUpdateCodeState(String auth);
     void updateCodeState (MuCode code);
+
 }

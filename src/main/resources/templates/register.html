@@ -32,11 +32,14 @@
                         </div>
                     </div>
                     <span id="vip" style="display: none; width: 100%;">
-                        <input type="text" name="vipcode" placeholder="邀请码(邀请码由椰子鸡集团分发)" autocomplete="off" class="layui-input">
-                        <input type="text" name="weeks" placeholder="输入周次&nbsp;(如: 第0周，发布周报时发布为第1周，有邀请码则必填&nbsp;注意格式)" autocomplete="off" class="layui-input">
+                        <input type="text" id="regcode" name="vipcode" placeholder="邀请码(邀请码由椰子鸡集团分发)" autocomplete="off" class="layui-input">
+                        <input type="text" id="regweek" name="weeks" placeholder="输入周次&nbsp;(如: 第0周，发布周报时发布为第1周，有邀请码则必填&nbsp;注意格式)" autocomplete="off" class="layui-input">
                     </span>
                     <p>
                         获取地址和经纬度：<a href="http://api.map.baidu.com/lbsapi/getpoint/index.html" target="_blank">点我进入</a>
+                    </p>
+                    <p>
+                        <a href="javascript:;" id="goVip" data-method="offset" data-type="auto">我已有账号，想升级为VIP。</a>
                     </p>
                     <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formSubmit">一键起飞</button>
                 </form>
@@ -46,7 +49,63 @@
         </div>
     </div>
 
+
+    <div id="reVip" style="display: none; padding: 10px;">
+        <form class="layui-form layui-form-pane" method="post" lay-filter="activeVip">
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="height: 35px; width: 80px">手机号</label>
+                <div class="layui-input-block">
+                    <input type="text" style="position: relative; left: -29px; width: 115% !important;" name="phone" autocomplete="off" placeholder="请输入手机号" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="height: 35px; width: 80px">周次</label>
+                <div class="layui-input-block">
+                    <input type="text" style="position: relative; left: -29px; width: 115% !important;" name="weeks" autocomplete="off" placeholder="请输入当前已发布的周次" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="height: 35px; width: 80px">邀请码</label>
+                <div class="layui-input-block">
+                    <input type="text" style="position: relative; left: -29px; width: 115% !important;" name="vipcode" autocomplete="off" placeholder="请输入邀请码" class="layui-input">
+                </div>
+            </div>
+
+            <p>填写周数说明：如第0周，则下次自动发布时发布第1周的周报。</p>
+
+            <button type="button" id="active" class="layui-btn layui-btn-normal" style="width: 346px !important;margin: 0;" lay-filter="formVip">激活</button>
+        </form>
+    </div>
     <script th:src="@{/webjars/layui/2.5.6/layui.js}"></script>
+    <script>
+        layui.use('layer', function(){ //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+            //触发事件
+            var active = {
+                offset: function(othis){
+                    var type = othis.data('type')
+                    layer.open({
+                        type: 1
+                        ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                        ,id: 'layerDemo'+type //防止重复弹出
+                        ,content: $("#reVip")
+                        ,btnAlign: 'c' //按钮居中
+                        ,shade: 0 //不显示遮罩
+                        ,title: "激活VIP"
+                    });
+                }
+            };
+
+            $('#goVip').on('click', function(){
+                var othis = $(this), method = othis.data('method');
+                active[method] ? active[method].call(this, othis) : '';
+            });
+
+        });
+    </script>
     <script>
         layui.use(['layer', 'form', 'element'], function(){
             var layer = layui.layer
@@ -63,16 +122,48 @@
                 if (this.checked) {
                     layer.tips('温馨提示：填写周数时请填写当前已发布的最高周数，因为发布时为当前周数+1。', data.othis)
                     $("#vip").slideDown();
-                    $("#dialog").css({"height":"550px"});
+                    $("#dialog").css({"height":"580px"});
                 }
                 else {
                     layer.tips('邀请码可以找内部人员获取', data.othis, { time: 1000 })
                     $("#vip").slideUp();
-                    $("[name = vipcode]").val("");
-                    $("[name = weeks]").val("");
+                    $("#regcode").val("");
+                    $("#regweek").val("");
                     $("#dialog").css({"height":"500px"});
                 }
             });
+            // 激活 VIP
+            //表单取值
+            layui.$('#active').on('click', function(){
+                let week = /^第[\d{1}]周$/;
+                var data = form.val('activeVip');
+                let { phone, vipcode, weeks } = data;
+                console.log(!week.test(weeks))
+                let tip = "";
+                if (phone.length !== 11){
+                    tip = '手机号格式不正确！';
+                } else if (weeks.trim() !== '' && !week.test(weeks) || weeks.trim() === '') {
+                    tip = '请周数按照：第0周 格式填写。';
+                } else if (vipcode.trim() === '') {
+                    tip = '请输入激活码'
+                }
+                if (tip === "") {
+                    $.ajax({
+                        url: window.location.origin + "/" + "activeVip",
+                        method: "post",
+                        data: data,
+                        success: (res) => {
+                            if (res.code !== 1) layer.msg(res.msg)
+                            else layer.msg(res.data)
+                        }
+                    })
+                } else {
+                    layer.msg(tip);
+                }
+                // alert(JSON.stringify(data));
+            });
+
+
             //监听提交
             form.on('submit(formSubmit)', function(data){
                 let re = /[^\u4E00-\u9FA5]/;

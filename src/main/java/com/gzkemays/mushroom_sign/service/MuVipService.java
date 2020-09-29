@@ -17,11 +17,19 @@ import java.util.Map;
  * @since 2020-09-27
  */
 public interface MuVipService extends IService<MuVip> {
+    // 根据 userId 返回 VIP 信息
     MuVip getMsgByUserId(Long id);
+    // 使用激活码注册时
     boolean useCodeRegVip(MuVipCodeRegVO muVipCodeRegVO) throws Exception;
+    // 使用激活码注册已有账号
     boolean registerVip(MuVipRegVO vipRegVO);
+    // 判断用户是否已经是 VIP
+    boolean userIsVip(MuVipRegVO vipRegVO);
+    // 更新周次
     void updateVipWeekTime(MuVipDTO dto);
+    // 更新发布状态
     void updateVipState (MuVipDTO dto);
+    // 初始化发布状态（每周任务开始时启动）
     void initVipState ();
 
 }

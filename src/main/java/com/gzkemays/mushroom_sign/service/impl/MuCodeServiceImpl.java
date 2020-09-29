@@ -27,6 +27,16 @@ public class MuCodeServiceImpl extends ServiceImpl<MuCodeMapper, MuCode> impleme
     }
 
     @Override
+    public boolean hasCode(String code) {
+        QueryWrapper<MuCode> wrapper = new QueryWrapper<>();
+            wrapper.eq("vipcode",code);
+        if (baseMapper.selectOne(wrapper) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void saveOrUpdateCodeState(String auth) {
         MuCode muCode = new MuCode();
             muCode.setAuth(auth);

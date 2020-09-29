@@ -103,14 +103,34 @@ public class MuVipServiceImpl extends ServiceImpl<MuVipMapper, MuVip> implements
         QueryWrapper<MuUser> wrapper = new QueryWrapper<>();
             wrapper.select("id").eq("phone",vipRegVO.getPhone());
         MuUser muUser = muUserMapper.selectOne(wrapper);
-        if (muUser != null) {
-            MuVip muVip = new MuVip();
+
+        if (muCodeService.hasCode(vipRegVO.getVipcode())) {
+            if (!muCodeService.getCodeState(vipRegVO.getVipcode())) throw new MushroomException(0,"激活码已被使用");
+            if (this.userIsVip(vipRegVO)) throw new MushroomException(0,"您已是VIP用户");
+            if (muUser != null) {
+                MuVip muVip = new MuVip();
                 muVip.setUserId(muUser.getId());
                 muVip.setWeeks(vipRegVO.getWeeks());
-            baseMapper.insert(muVip);
-            return true;
+                baseMapper.insert(muVip);
+                MuCode muCode = new MuCode();
+                    muCode.setVipcode(vipRegVO.getVipcode());
+                muCodeService.updateCodeState(muCode);
+                return true;
+            } else {
+                throw new MushroomException(0,"没有该账号！");
+            }
+        } else {
+            throw new MushroomException(0,"没有该激活码！");
         }
-        return false;
+
+    }
+
+    @Override
+    public boolean userIsVip(MuVipRegVO vipRegVO) {
+        Long userId = muUserService.getIdByPhone(vipRegVO.getPhone());
+        QueryWrapper<MuVip> wrapper = new QueryWrapper();
+            wrapper.eq("userId",userId);
+        return baseMapper.selectOne(wrapper) != null;
     }
 
     @Override

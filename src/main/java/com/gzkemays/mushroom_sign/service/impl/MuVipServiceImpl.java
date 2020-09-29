@@ -1,12 +1,20 @@
 package com.gzkemays.mushroom_sign.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.gzkemays.mushroom_sign.exception.MushroomException;
+import com.gzkemays.mushroom_sign.mapper.MuCodeMapper;
 import com.gzkemays.mushroom_sign.mapper.MuUserMapper;
+import com.gzkemays.mushroom_sign.po.MuCode;
 import com.gzkemays.mushroom_sign.po.MuUser;
 import com.gzkemays.mushroom_sign.po.MuVip;
 import com.gzkemays.mushroom_sign.mapper.MuVipMapper;
 import com.gzkemays.mushroom_sign.po.dto.MuVipDTO;
+import com.gzkemays.mushroom_sign.po.vo.MuLoginVO;
+import com.gzkemays.mushroom_sign.po.vo.MuVipCodeRegVO;
 import com.gzkemays.mushroom_sign.po.vo.MuVipRegVO;
+import com.gzkemays.mushroom_sign.service.HttpGetService;
+import com.gzkemays.mushroom_sign.service.MuCodeService;
 import com.gzkemays.mushroom_sign.service.MuUserService;
 import com.gzkemays.mushroom_sign.service.MuVipService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -18,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * <p>
@@ -31,12 +40,62 @@ import java.util.Map;
 public class MuVipServiceImpl extends ServiceImpl<MuVipMapper, MuVip> implements MuVipService {
     @Autowired
     private MuUserMapper muUserMapper;
+    @Autowired
+    private MuUserService muUserService;
+    @Autowired
+    private MuCodeMapper muCodeMapper;
+    @Autowired
+    private MuCodeService muCodeService;
+    @Autowired
+    private HttpGetService httpGetService;
 
     @Override
     public MuVip getMsgByUserId(Long id) {
         QueryWrapper<MuVip> wrapper = new QueryWrapper<>();
             wrapper.eq("userId",id);
         return baseMapper.selectOne(wrapper);
+    }
+
+    @Override
+    public boolean useCodeRegVip(MuVipCodeRegVO muVipCodeRegVO) throws Exception {
+        String code = muVipCodeRegVO.getVipcode().trim();
+        QueryWrapper<MuCode> muCodeQueryWrapper = new QueryWrapper<>();
+            muCodeQueryWrapper.eq("vipcode", code);
+        QueryWrapper<MuUser> muUserQueryWrapper = new QueryWrapper<>();
+            muUserQueryWrapper.eq("phone", muVipCodeRegVO.getPhone());
+        if (!Objects.equals(code, "") && muCodeMapper.selectOne(muCodeQueryWrapper) == null){
+            throw new MushroomException(0,"没有该邀请码");
+        }
+        else if (!Objects.equals(code, "") && !muCodeService.getCodeState(code)){
+            throw new MushroomException(0,"邀请码不可用");
+        }
+        else if (muUserMapper.selectOne(muUserQueryWrapper) != null){
+            throw new MushroomException(0,"手机号已被注册");
+        } else {
+            // 邀请码存在且可用，且该手机号未注册。
+            // 注册账号
+            MuUser muUser = new MuUser();
+                BeanUtils.copyProperties(muVipCodeRegVO, muUser);
+            MuLoginVO loginVO = new MuLoginVO();
+                BeanUtils.copyProperties(muUser, loginVO);
+            String token = httpGetService.getAuthorization(loginVO);
+            if (token.length() < 10) {
+                throw new MushroomException(0, token);
+            }
+            muUserService.saveUser(muUser);
+            // 注册VIP
+            if (muCodeMapper.selectOne(muCodeQueryWrapper) != null){
+                MuVipRegVO vipRegVO = new MuVipRegVO();
+                BeanUtils.copyProperties(muVipCodeRegVO, vipRegVO);
+                this.registerVip(vipRegVO);
+                // 更新邀请码状态
+                MuCode muCode = new MuCode();
+                muCode.setVipcode(code);
+                muCodeService.updateCodeState(muCode);
+            }
+
+            return true;
+        }
     }
 
     @Override

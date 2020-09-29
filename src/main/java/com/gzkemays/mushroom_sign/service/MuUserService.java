@@ -16,6 +16,7 @@ import java.util.List;
 public interface MuUserService extends IService<MuUser> {
     List<MuUser> getUser();
     boolean saveUser(MuUser user);
+    Long getIdByPhone(String phone);
     void updateToken(String token);
     void updatePlan(String phone, String plan);
     void updateState(String phone);

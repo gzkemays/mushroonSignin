@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" charset="UTF-8">
     <title>蘑菇丁打卡 - 椰子鸡特别版</title>
-    <link rel="stylesheet" th:href="@{/css/index.css}">
-    <link rel="stylesheet" th:href="@{/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}" href="css/index.css">
+    <link rel="stylesheet" th:href="@{/webjars/layui/2.5.6/css/layui.css}" href="css/layui.css">
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
     <link rel="icon" th:href="@{/images/yzj.ico}">
 </head>
 <body>
@@ -13,21 +14,101 @@
             <h2>自动打卡 - 椰子鸡特别版</h2>
         </div>
         <div class="layui-anim layui-anim-upbit">
-            <div class="dialog">
-                <form th:action="@{/saveUser}" method="post">
-                    <input type="text" name="phone" required lay-verify="required" placeholder="输入手机号码" autocomplete="off" class="layui-input">
-                    <input type="text" name="password" required lay-verify="required" placeholder="输入蘑菇钉密码" autocomplete="off" class="layui-input">
-                    <input type="text" name="province" required lay-verify="required" placeholder="输入省份" autocomplete="off" class="layui-input">
-                    <input type="text" name="city" required lay-verify="required" placeholder="输入城市" autocomplete="off" class="layui-input">
-                    <input type="text" name="address" required lay-verify="required" placeholder="输入签到地址" autocomplete="off" class="layui-input">
-                    <input type="text" name="description" required lay-verify="required" placeholder="发表的信息（可为空）" autocomplete="off" class="layui-input">
-                    <input type="text" name="longitude" required lay-verify="required" placeholder="经度" autocomplete="off" class="layui-input">
-                    <input type="text" name="latitude" required lay-verify="required" placeholder="维度" autocomplete="off" class="layui-input">
-                    <button class="layui-btn layui-btn-normal">一键起飞</button>
+            <div id="dialog" class="dialog">
+                <h3>起飞信息</h3>
+                <form method="post" class="layui-form">
+                    <input type="number" name="phone" required lay-verify="required" placeholder="输入手机号码(如: 18925800000)" autocomplete="off" class="layui-input">
+                    <input type="text" name="password" required lay-verify="required" placeholder="输入蘑菇钉密码(如: 请谨慎填写,否则错误无法签到.)" autocomplete="off" class="layui-input">
+                    <input type="text" name="province" required lay-verify="required" placeholder="输入省份(如: 广东省)" autocomplete="off" class="layui-input">
+                    <input type="text" name="city" required lay-verify="required" placeholder="输入城市(如: 广州市)" autocomplete="off" class="layui-input">
+                    <input type="text" name="address" required lay-verify="required" placeholder="输入签到地址(上班地点从市级开始)" autocomplete="off" class="layui-input">
+                    <input type="text" name="description" placeholder="发表的信息（可为空）" autocomplete="off" class="layui-input">
+                    <input type="text" name="longitude" required lay-verify="required" placeholder="经度(广州市的经度:113.273154)" autocomplete="off" class="layui-input">
+                    <input type="text" name="latitude" required lay-verify="required" placeholder="维度(广州市的维度:23.134273)" autocomplete="off" class="layui-input">
+                    <div class="layui-input">
+                        <label class="layui-form-label" style="width: 100px;padding: 9px 0px !important;">是否填写邀请码</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="zzz" lay-skin="switch" lay-filter="isCode" lay-text="是|否">
+                        </div>
+                    </div>
+                    <span id="vip" style="display: none; width: 100%;">
+                        <input type="text" name="vipcode" placeholder="邀请码(邀请码由椰子鸡集团分发)" autocomplete="off" class="layui-input">
+                        <input type="text" name="weeks" placeholder="输入周次&nbsp;(如: 第0周，发布周报时发布为第1周，有邀请码则必填&nbsp;注意格式)" autocomplete="off" class="layui-input">
+                    </span>
+                    <p>
+                        获取地址和经纬度：<a href="http://api.map.baidu.com/lbsapi/getpoint/index.html" target="_blank">点我进入</a>
+                    </p>
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formSubmit">一键起飞</button>
                 </form>
-                推荐获取地址和经纬度的方式：http://api.map.baidu.com/lbsapi/getpoint/index.html
+                <br>
+                <p>&copy; 2020 椰子鸡集团 版权所有</p>
             </div>
         </div>
     </div>
+
+    <script th:src="@{/webjars/layui/2.5.6/layui.js}"></script>
+    <script>
+        layui.use(['layer', 'form', 'element'], function(){
+            var layer = layui.layer
+                ,form = layui.form
+                ,element = layui.element
+            layer.msg('欢迎来到椰子鸡集团蘑菇钉打卡注册平台，填写邀请码即可自动每周发布周报。', {
+                offset: 'auto',
+                time: 3000
+            });
+
+            form.render();
+            //监听指定开关
+            form.on('switch(isCode)', function(data){
+                if (this.checked) {
+                    layer.tips('温馨提示：填写周数时请填写当前已发布的最高周数，因为发布时为当前周数+1。', data.othis)
+                    $("#vip").slideDown();
+                    $("#dialog").css({"height":"550px"});
+                }
+                else {
+                    layer.tips('邀请码可以找内部人员获取', data.othis, { time: 1000 })
+                    $("#vip").slideUp();
+                    $("[name = vipcode]").val("");
+                    $("[name = weeks]").val("");
+                    $("#dialog").css({"height":"500px"});
+                }
+            });
+            //监听提交
+            form.on('submit(formSubmit)', function(data){
+                let re = /[^\u4E00-\u9FA5]/;
+                let week = /^第[\d{1}]周$/;
+                let tip = "";
+                let {address, city, description, longitude, password, phone, province, vipcode, weeks} = data.field;
+                if (phone.length !== 11) {
+                    tip = '手机号格式不正确！';
+                } else if (address.length < 5) {
+                    tip = '请填写详细地址(请对自己负责)！';
+                } else if (re.test(address) || re.test(city) || re.test(province)) {
+                    tip = '请确认地址、城市、省区填写无误！';
+                } else if (weeks.trim() !== '' && !week.test(weeks)){
+                    tip = '请周数按照：第0周 格式填写。';
+                } else if (vipcode.trim() !== '' && weeks.trim() === '') {
+                    tip = '您填写了邀请码，请填写你当前的周报周次。';
+                }
+                if (tip === "") {
+                    $.ajax({
+                        url: window.location.origin + "/" + "useCodeReg",
+                        method: "post",
+                        data: data.field,
+                        success: (res) => {
+                            if (res.code !== 1) layer.msg(res.msg)
+                            else layer.msg(res.data)
+                        }
+                    })
+                } else {
+                    layer.msg(tip);
+                }
+                return false;
+
+            });
+
+        });
+
+    </script>
 </body>
 </html>

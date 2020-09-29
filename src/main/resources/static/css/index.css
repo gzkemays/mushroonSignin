@@ -1,29 +1,55 @@
 .index {
-  margin-top: 20px;
+  margin-top: 15px;
   width: 100vw;
-  background: url(../images/bgc.png) no-repeat center center;
-  background-size: 85vw;
+}
+.top {
+  height: 70px;
 }
 h2 {
   text-align: center;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-bottom: 20px; */
+}
+p {
+  text-align: center;
+  width: auto;
+  max-width: 95%;
 }
 .dialog {
   width: 80vw;
-  height: 470px;
-  background: rgba(238, 238, 238, 0.5);
+  height: 500px;
   border: 1px solid #eeeeee;
   margin: 20px auto;
   border-radius: 10px;
+  background: url(../images/bgc.png) no-repeat center center;
+}
+h3 {
+  height: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .button {
   width: 80vw;
   margin: 10px;
-  border-radius: 5px !important;
 }
 .layui-input {
-  margin: 18px auto;
+  height: 35px !important;
+  border: none !important;
+}
+.layui-input:nth-child(1) {
   width: 95% !important;
-  background-color: rgba(225, 225, 225, 0.3) !important;
+  background-color: rgba(225, 225, 225, 0.5) !important;
+  margin: auto;
+}
+.layui-input:not(:first-child) {
+  width: 95% !important;
+  background-color: rgba(225, 225, 225, 0.5) !important;
+  margin: 8px auto;
 }
 .layui-btn {
   width: 80vw;

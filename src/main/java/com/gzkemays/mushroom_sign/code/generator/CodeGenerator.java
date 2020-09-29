@@ -16,6 +16,7 @@ import java.util.List;
 public class CodeGenerator {
     public static final String PARENT_PATH = System.getProperty("user.dir")+"/src/main/java";
     public static final String AUTHOR = "gzkemays";
+    public static final boolean IS_OVERRIDE = true;
     public static final String DATABASE = "mushroom";
     public static final String DATA_PORT = "4096";
     public static final String[] DATA_COLUMN = new String[]{"mu_code"};
@@ -33,7 +34,7 @@ public class CodeGenerator {
 
         gc.setAuthor(AUTHOR);
         gc.setOpen(false);
-        gc.setFileOverride(false);
+        gc.setFileOverride(IS_OVERRIDE);
         gc.setDateType(DateType.ONLY_DATE);
         gc.setServiceName("%sService");
         // 全局配置

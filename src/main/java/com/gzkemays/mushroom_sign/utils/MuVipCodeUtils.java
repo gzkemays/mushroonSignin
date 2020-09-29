@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-public class MuVipCode {
+public class MuVipCodeUtils {
     private static ThreadLocal<String> tlSDF = new ThreadLocal<>();
     public static String YZJ_KEY = "YZJ";
 
@@ -17,7 +17,7 @@ public class MuVipCode {
      */
     public static String adminGetVipCode(String auth){
         MessageDigest md5 = null;
-        tlSDF.set(YZJ_KEY + new SimpleDateFormat("yyyyMMdd").format(new Date()) + auth);
+        tlSDF.set(YZJ_KEY + new SimpleDateFormat("yyyyMMddss").format(new Date()) + auth);
         String inStr = tlSDF.get();
         try {
             md5 = MessageDigest.getInstance("MD5");

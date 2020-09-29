@@ -38,7 +38,7 @@ public class HttpGetServiceImpl implements HttpGetService {
         JSONObject data = (JSONObject) res[0].get("data");
         String token ;
         if (data == null) {
-            token = null;
+            token = res[0].get("msg").toString();
         } else {
             token = data.get("token").toString();
         }

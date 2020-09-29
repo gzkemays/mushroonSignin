@@ -27,13 +27,20 @@ public class MuUserServiceImpl extends ServiceImpl<MuUserMapper, MuUser> impleme
     @Override
     public boolean saveUser(MuUser user) {
         QueryWrapper<MuUser> wrapper = new QueryWrapper<>();
-        wrapper.select("phone").eq("phone",user.getPhone());
+            wrapper.select("phone").eq("phone",user.getPhone());
         if (baseMapper.selectOne(wrapper) == null) {
             baseMapper.insert(user);
             return true;
         }
         return false;
 
+    }
+
+    @Override
+    public Long getIdByPhone(String phone) {
+        QueryWrapper<MuUser> wrapper = new QueryWrapper<>();
+            wrapper.eq("phone",phone).select("id");
+        return baseMapper.selectOne(wrapper).getId();
     }
 
     @Override

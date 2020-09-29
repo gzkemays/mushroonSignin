@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class MyMetaObjectHandler implements MetaObjectHandler {
+public class MushroomObjectHandler implements MetaObjectHandler {
     // 插入时填充策略
     @Override
     // setFieldValByName(String fieldName, Object fieldVal, MetaObject metaObject)

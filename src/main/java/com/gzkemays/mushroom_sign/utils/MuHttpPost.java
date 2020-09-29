@@ -1,6 +1,6 @@
 package com.gzkemays.mushroom_sign.utils;
 
-import com.gzkemays.mushroom_sign.exceptions.MethodException;
+import com.gzkemays.mushroom_sign.exception.MushroomException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.protocol.HTTP;
@@ -23,7 +23,7 @@ public class MuHttpPost {
     static final String CACHE_CONTROL = "no-cache";
 
 
-    public static HttpPost getPost (String method, String data, String key) throws MethodException {
+    public static HttpPost getPost (String method, String data, String key) {
         HttpPost httpPost;
         if (method.equals("token")) {
             httpPost = new HttpPost(TOKEN_URL);
@@ -43,7 +43,7 @@ public class MuHttpPost {
             httpPost.addHeader("Authorization", key);
             httpPost.addHeader("roleKey",PLAN_ROLE);
         } else {
-            throw new MethodException("没有定义该方法");
+            throw new MushroomException(-3,"没有定义该方法");
         }
         StringEntity entity = new StringEntity(data, HTTP.UTF_8);
         entity.setContentType("text/xml");

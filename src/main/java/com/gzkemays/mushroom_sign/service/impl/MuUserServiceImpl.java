@@ -55,23 +55,17 @@ public class MuUserServiceImpl extends ServiceImpl<MuUserMapper, MuUser> impleme
     }
 
     @Override
-    public void updateState(String phone, String state) {
+    public void updateState(String phone) {
         MuUser user = new MuUser();
         QueryWrapper<MuUser> wrapper = new QueryWrapper<>();
         wrapper.select("type").eq("phone",phone);
         String upType = baseMapper.selectOne(wrapper).getType();
-        System.out.println("upType = " + upType);
-        System.out.println("state = " + state);
-        if (upType.equals(state)) {
-            if (state.equals("START")) {
-                user.setType("END");
-            } else {
-                user.setType("START");
-            }
-            System.out.println("\" —————— 更新打卡状态 ——————\" = " + "更新打卡状态");
+        if (upType.equals("START")) {
+            user.setType("END");
         } else {
-            System.out.println("\"改天再打\" = " + "改天再打");
+            user.setType("START");
         }
+        System.out.println("\" —————— 更新打卡状态 ——————\" = " + "更新打卡状态");
         baseMapper.update(user,wrapper);
     }
 }

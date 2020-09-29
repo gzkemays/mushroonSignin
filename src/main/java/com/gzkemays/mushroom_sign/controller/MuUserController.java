@@ -3,7 +3,7 @@ package com.gzkemays.mushroom_sign.controller;
 
 import com.gzkemays.mushroom_sign.po.MuUser;
 import com.gzkemays.mushroom_sign.service.MuUserService;
-import com.gzkemays.mushroom_sign.utils.UUIDUtils;
+import com.gzkemays.mushroom_sign.utils.MuVipCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,19 +35,6 @@ public class MuUserController {
             msg = "你已经在测试名单，请勿捣乱！";
         }
         return msg;
-    }
-    @GetMapping("/reg")
-    public String getRegUUID (HttpServletRequest request, HttpSession session) {
-        String uuid = UUIDUtils.getUUID();
-        ArrayList<String> saveList = (ArrayList<String>) session.getAttribute("session");
-        if (saveList.size() == 0) {
-            ArrayList<String> arrayList = new ArrayList<>();
-            arrayList.add(uuid);
-        } else {
-            saveList.add(uuid);
-            request.setAttribute("session",saveList);
-        }
-        return uuid;
     }
     @GetMapping("/")
     public String getIndexPage () {

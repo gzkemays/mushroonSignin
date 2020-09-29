@@ -18,6 +18,6 @@ public interface MuUserService extends IService<MuUser> {
     boolean saveUser(MuUser user);
     void updateToken(String token);
     void updatePlan(String phone, String plan);
-    void updateState(String phone, String state);
+    void updateState(String phone);
 
 }

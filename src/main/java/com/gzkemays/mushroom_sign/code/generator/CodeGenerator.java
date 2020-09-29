@@ -18,7 +18,7 @@ public class CodeGenerator {
     public static final String AUTHOR = "gzkemays";
     public static final String DATABASE = "mushroom";
     public static final String DATA_PORT = "4096";
-    public static final String[] DATA_COLUMN = new String[]{"mu_user"};
+    public static final String[] DATA_COLUMN = new String[]{"mu_code"};
     public static final String DATASOURCE_URL = "jdbc:mysql://127.0.0.1:"+DATA_PORT+"/"+DATABASE+"?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8";
     public static final String DATASOURCE_DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String DATASOURCE_USER = "root";

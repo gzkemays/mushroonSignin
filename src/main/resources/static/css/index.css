@@ -1,0 +1,31 @@
+.index {
+  margin-top: 20px;
+  width: 100vw;
+  background: url(../images/bgc.png) no-repeat center center;
+  background-size: 85vw;
+}
+h2 {
+  text-align: center;
+}
+.dialog {
+  width: 80vw;
+  height: 470px;
+  background: rgba(238, 238, 238, 0.5);
+  border: 1px solid #eeeeee;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+.button {
+  width: 80vw;
+  margin: 10px;
+  border-radius: 5px !important;
+}
+.layui-input {
+  margin: 18px auto;
+  width: 95% !important;
+  background-color: rgba(225, 225, 225, 0.3) !important;
+}
+.layui-btn {
+  width: 80vw;
+  margin-top: 20px;
+}

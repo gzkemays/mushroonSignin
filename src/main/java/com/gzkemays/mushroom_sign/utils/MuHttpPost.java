@@ -8,7 +8,9 @@ import org.apache.http.protocol.HTTP;
 public class MuHttpPost {
     static final String TOKEN_URL = "https://api.moguding.net:9000/session/user/v1/login";
     static final String PLAN_URL = "https://api.moguding.net:9000/practice/plan/v1/getPlanByStu";
-    static final String SIGNIN_URL = "https://api.moguding.net:9000/attendence/clock/v1/save";
+    static final String SIGN_IN_URL = "https://api.moguding.net:9000/attendence/clock/v1/save";
+    static final String GET_WEEK_URL = "https://api.moguding.net:9000/practice/paper/v1/getWeeks1";
+    static final String SAVE_WEEK_URL = "https://api.moguding.net:9000/practice/paper/v1/save";
     static final String USER_AGENT = "Mozilla/5.0 (Linux; U; Android 9.0.0; zh-cn; MI 6X Build/OPR1.170623.027) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30";
     static final String ACCEPT_LANG = "zh-CN,zh;q=0.8";
     static final String AUTHORIZATION = "";
@@ -27,12 +29,16 @@ public class MuHttpPost {
             httpPost = new HttpPost(TOKEN_URL);
             httpPost.addHeader("Authorization",AUTHORIZATION);
             httpPost.addHeader("roleKey",TOKEN_ROLE);
-        } else if (method.equals("plan") || method.equals("sign")) {
+        } else if (method.equals("plan") || method.equals("sign") || method.equals("week_msg") || method.equals("post_week")) {
             if (method.equals("plan")) {
                 httpPost = new HttpPost(PLAN_URL);
-            } else {
+            } else if (method.equals("sign")){
                 httpPost = new HttpPost("127.0.0.1:8080");
-                System.out.println("\"———————— 开始打卡 ——————\" = " + "打卡");
+//                httpPost = new HttpPost(SIGN_IN_URL);
+            } else if (method.equals("week_msg")){
+                httpPost = new HttpPost(GET_WEEK_URL);
+            } else {
+                httpPost = new HttpPost(SAVE_WEEK_URL);
             }
             httpPost.addHeader("Authorization", key);
             httpPost.addHeader("roleKey",PLAN_ROLE);

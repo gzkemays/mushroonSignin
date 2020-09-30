@@ -108,7 +108,10 @@
     </script>
     <script>
         // var url = window.location.origin + "/mushroom/signin/" + "activeVip";
-        var url = window.location.origin + "/activeVip";
+        var url = window.location.origin;
+        // 测试环境下不用 pj
+        var pj = "/mushroom/signin";
+
         layui.use(['layer', 'form', 'element'], function(){
             var layer = layui.layer
                 ,form = layui.form
@@ -140,7 +143,7 @@
                 let week = /^第\d{1,2}周$/;
                 var data = form.val('activeVip');
                 let { phone, vipcode, weeks } = data;
-                console.log(!week.test(weeks))
+
                 let tip = "";
                 if (phone.length !== 11){
                     tip = '手机号格式不正确！';
@@ -151,7 +154,7 @@
                 }
                 if (tip === "") {
                     $.ajax({
-                        url,
+                        url: url + pj +"activeVip",
                         method: "post",
                         data: data,
                         success: (res) => {
@@ -171,12 +174,13 @@
                 let re = /[^\u4E00-\u9FA5]/;
                 let week = /^第\d{1,2}周$/;
                 let tip = "";
+
                 let {address, city, description, longitude, password, phone, province, vipcode, weeks} = data.field;
                 if (phone.length !== 11) {
                     tip = '手机号格式不正确！';
                 } else if (address.length < 5) {
                     tip = '请填写详细地址(请对自己负责)！';
-                } else if (re.test(address) || re.test(city) || re.test(province)) {
+                } else if ( re.test(city) || re.test(province)) {
                     tip = '请确认地址、城市、省区填写无误！';
                 } else if (weeks.trim() !== '' && !week.test(weeks)){
                     tip = '请周数按照：第0周 格式填写。';
@@ -185,7 +189,7 @@
                 }
                 if (tip === "") {
                     $.ajax({
-                        url,
+                        url: url + pj + "useCodeReg",
                         method: "post",
                         data: data.field,
                         success: (res) => {

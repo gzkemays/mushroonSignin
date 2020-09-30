@@ -17,7 +17,7 @@ public class MuVipCodeUtils {
      */
     public static String adminGetVipCode(String auth){
         MessageDigest md5 = null;
-        tlSDF.set(YZJ_KEY + new SimpleDateFormat("yyyyMMddss").format(new Date()) + auth);
+            tlSDF.set(YZJ_KEY + new SimpleDateFormat("yyyyMMddSSS").format(new Date()) + auth);
         String inStr = tlSDF.get();
         try {
             md5 = MessageDigest.getInstance("MD5");

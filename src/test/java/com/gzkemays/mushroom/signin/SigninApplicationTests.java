@@ -36,9 +36,26 @@ class SigninApplicationTests {
     void contextLoads() throws Exception {
         System.out.println("MuVipCodeUtils.stringMD5() = " + MuVipCodeUtils.adminGetVipCode("gzkemays"));
     }
+
+    /**
+     * 打卡
+     */
+    @Test
+    void MushroomSignIn() throws Exception {
+        muSignInService.reDuty("START");
+    }
+
+    /**
+     * 生成激活码
+     */
     @Test
     void ManualSetCode() {
-        muCodeService.saveOrUpdateCodeState("gzkemays");
+        int i = 0;
+        while ( i < 5) {
+            muCodeService.saveOrUpdateCodeState("gzkemays");
+            i++;
+        }
+
     }
 
 

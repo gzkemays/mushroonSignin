@@ -39,7 +39,7 @@
                         获取地址和经纬度：<a href="http://api.map.baidu.com/lbsapi/getpoint/index.html" target="_blank">点我进入</a>
                     </p>
                     <p>
-                        <a href="javascript:;" id="goVip" data-method="offset" data-type="auto">我已有账号，想升级为VIP。</a>
+                        <a href="javascript:;" style="color: blue;" id="goVip" data-method="offset" data-type="auto">我已有账号，想升级为VIP。</a>
                     </p>
                     <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formSubmit">一键起飞</button>
                 </form>
@@ -107,8 +107,8 @@
         });
     </script>
     <script>
-        var url = window.location.origin + "/mushroom/signin/" + "activeVip";
-        // var url = window.location.origin + "/activeVip";
+        // var url = window.location.origin + "/mushroom/signin/" + "activeVip";
+        var url = window.location.origin + "/activeVip";
         layui.use(['layer', 'form', 'element'], function(){
             var layer = layui.layer
                 ,form = layui.form

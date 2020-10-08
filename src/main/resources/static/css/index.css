@@ -55,3 +55,10 @@ h3 {
   width: 80vw;
   margin-top: 20px;
 }
+#borad {
+  display: none;
+}
+#borad p {
+  text-indent: 1.5em;
+  text-align: left;
+}

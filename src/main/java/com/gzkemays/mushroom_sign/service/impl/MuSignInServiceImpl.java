@@ -78,7 +78,6 @@ public class MuSignInServiceImpl implements MuSignInService {
             vo.setPassword(muUser.getPassword());
         // 登陆获取 token
         String token = httpGetService.getAuthorization(vo);
-
         if (token != null) {
             // 获取 planId
             String planId = httpGetService.getPlanId(token);

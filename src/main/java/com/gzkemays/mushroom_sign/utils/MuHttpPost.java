@@ -33,8 +33,8 @@ public class MuHttpPost {
             if (method.equals("plan")) {
                 httpPost = new HttpPost(PLAN_URL);
             } else if (method.equals("sign")){
-                httpPost = new HttpPost("127.0.0.1:8080");
-//                httpPost = new HttpPost(SIGN_IN_URL);
+//                httpPost = new HttpPost("127.0.0.1:8080");
+                httpPost = new HttpPost(SIGN_IN_URL);
             } else if (method.equals("week_msg")){
                 httpPost = new HttpPost(GET_WEEK_URL);
             } else {

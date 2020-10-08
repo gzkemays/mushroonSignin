@@ -38,7 +38,7 @@ public class HttpGetServiceImpl implements HttpGetService {
         JSONObject data = (JSONObject) res[0].get("data");
         String token ;
         if (data == null) {
-            token = res[0].get("msg").toString();
+            return null;
         } else {
             token = data.get("token").toString();
         }
@@ -116,6 +116,7 @@ public class HttpGetServiceImpl implements HttpGetService {
             result = EntityUtils.toString(response.getEntity(),"utf-8");
             response.close();
             httpClient.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

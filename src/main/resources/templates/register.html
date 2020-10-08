@@ -25,9 +25,9 @@
                     <input type="text" name="description" placeholder="发表的信息（可为空）" autocomplete="off" class="layui-input">
                     <input type="text" name="longitude" required lay-verify="required" placeholder="经度(广州市的经度:113.273154)" autocomplete="off" class="layui-input">
                     <input type="text" name="latitude" required lay-verify="required" placeholder="维度(广州市的维度:23.134273)" autocomplete="off" class="layui-input">
-                    <div class="layui-input">
-                        <label class="layui-form-label" style="width: 100px;padding: 9px 0px !important;">是否填写邀请码</label>
-                        <div class="layui-input-block">
+                    <div class="layui-input" style="display: flex;justify-content: space-between">
+                        <label class="layui-form-label" style="width: 36%;text-align: left; padding: 9px 0px !important;">是否填写邀请码</label>
+                        <div class="layui-input-block" style="margin-right: 10px;">
                             <input type="checkbox" name="zzz" lay-skin="switch" lay-filter="isCode" lay-text="是|否">
                         </div>
                     </div>
@@ -36,10 +36,10 @@
                         <input type="text" id="regweek" name="weeks" placeholder="输入周次&nbsp;(如: 第0周，发布周报时发布为第1周，有邀请码则必填&nbsp;注意格式)" autocomplete="off" class="layui-input">
                     </span>
                     <p>
-                        获取地址和经纬度：<a href="http://api.map.baidu.com/lbsapi/getpoint/index.html" target="_blank">点我进入</a>
+                        获取地址和经纬度：<a href="http://api.map.baidu.com/lbsapi/getpoint/index.html" target="_blank" style="color: blue;">点我进入</a>
                     </p>
                     <p>
-                        <a href="javascript:;" style="color: blue;" id="goVip" data-method="offset" data-type="auto">我已有账号，想升级为VIP。</a>
+                        <a href="javascript:;" style="color: red;" id="goVip" data-method="offset" data-type="auto">我已有账号，想升级为VIP。</a>
                     </p>
                     <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formSubmit">一键起飞</button>
                 </form>
@@ -49,7 +49,7 @@
         </div>
     </div>
 
-
+    <!-- VIP 激活入口 -->
     <div id="reVip" style="display: none; padding: 10px;">
         <form class="layui-form layui-form-pane" method="post" lay-filter="activeVip">
             <div class="layui-form-item">
@@ -78,6 +78,20 @@
             <button type="button" id="active" class="layui-btn layui-btn-normal" style="width: 346px !important;margin: 0;" lay-filter="formVip">激活</button>
         </form>
     </div>
+
+    <!-- 公告栏 -->
+    <div id="borad">
+        <div style="padding: 25px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">
+            <p>蘑菇钉自动签到由椰子鸡集团开发 <br/>每天早上 7:30 自动签到上班，下午 17:30 下班打卡。</p>
+            <br/>
+            <p>邀请码提供自动填写周报功能(文章以“上班”为关键字随机生成)每周一自动填报上交。具体获取方法<b style="color: red">扫以下二维码</b>进群直接联系管理员获取即可！</p>
+            <br/>
+            <p>椰子鸡集团现承包大学软件项目私单，开发人员具有丰富的答辩经验，可一对一指导。有意者直接加群联系群主即可，价格绝对比某宝和其他外包优惠且实在！</p>
+            <br/>
+            <img src="http://img.hwy-study.xyz/YZJ%20%E4%BB%A3%E5%81%9A%E4%BA%8C%E7%BB%B4%E7%A0%81.png" alt="QQ群二维码" style="width: 60%;margin-left: 55px;">
+        </div>
+    </div>
+
     <script th:src="@{/webjars/layui/2.5.6/layui.js}"></script>
     <script>
         layui.use('layer', function(){ //独立版的layer无需执行这一句
@@ -107,22 +121,35 @@
         });
     </script>
     <script>
-        // var url = window.location.origin + "/mushroom/signin/" + "activeVip";
         var url = window.location.origin;
         // 测试环境下不用 pj
-        var pj = "/mushroom/signin";
+        var pj = "/mushroom/signin/";
 
         layui.use(['layer', 'form', 'element'], function(){
             var layer = layui.layer
                 ,form = layui.form
                 ,element = layui.element
-            layer.msg('欢迎来到椰子鸡集团蘑菇钉打卡注册平台，填写邀请码即可自动每周发布周报。', {
-                offset: 'auto',
-                time: 3000
+            // layer.msg('欢迎来到椰子鸡集团蘑菇钉打卡注册平台，填写邀请码即可自动每周发布周报。', {
+            //     offset: 'auto',
+            //     time: 3000
+            // });
+
+            layer.open({
+                type: 1
+                ,title: false //不显示标题栏
+                ,closeBtn: false
+                ,offset: 'auto'
+                ,area: '350px;'
+                ,shade: 0.8
+                ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                ,btn: ['我已经知道了']
+                ,btnAlign: 'c'
+                ,moveType: 1 //拖拽模式，0或者1
+                ,content: $("#borad")
             });
 
             form.render();
-            //监听指定开关
+            // 监听指定开关
             form.on('switch(isCode)', function(data){
                 if (this.checked) {
                     layer.tips('温馨提示：填写周数时请填写当前已发布的最高周数，因为发布时为当前周数+1。', data.othis)
@@ -138,7 +165,7 @@
                 }
             });
             // 激活 VIP
-            //表单取值
+            // 表单取值
             layui.$('#active').on('click', function(){
                 let week = /^第\d{1,2}周$/;
                 var data = form.val('activeVip');
@@ -169,7 +196,7 @@
             });
 
 
-            //监听提交
+            // 监听提交
             form.on('submit(formSubmit)', function(data){
                 let re = /[^\u4E00-\u9FA5]/;
                 let week = /^第\d{1,2}周$/;
@@ -201,7 +228,6 @@
                     layer.msg(tip);
                 }
                 return false;
-
             });
 
         });

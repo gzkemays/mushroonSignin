@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dda52747-4651-4431-a2be-dc798559ae01" name="默认更改列表" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/config/SignInTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/config/SignInTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/service/MuUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/service/MuUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/service/impl/HttpGetServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/service/impl/HttpGetServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/service/impl/MuSignInServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/service/impl/MuSignInServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/service/impl/MuUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/service/impl/MuUserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/utils/MuHttpPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gzkemays/mushroom_sign/utils/MuHttpPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+        <option name="userSettingsFile" value="D:\MavenJar\setting.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hde7HYUwzk05KwQ47tg692leHQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="C:/Program Files/TortoiseSVN/bin/svn.exe" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.15429688" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="vcs.Subversion" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ProjectLearn\mushroom\src\main\resources\mapper" />
+      <recent name="D:\ProjectLearn\mushroom\src\main\resources" />
+    </key>
+  </component>
+  <component name="RestServicesNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="Found 29 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn compile" />
+      <command value="mvn clean" />
+      <command value="mvn package" />
+      <command value="mvn clean package -DskipTests" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SigninApplication">
+    <configuration name="CodeGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.gzkemays.mushroom_sign.code.generator.CodeGenerator" />
+      <module name="mushroom" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gzkemays.mushroom_sign.code.generator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SigninApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mushroom" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gzkemays.mushroom.signin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gzkemays.mushroom.signin" />
+      <option name="MAIN_CLASS_NAME" value="com.gzkemays.mushroom.signin.SigninApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SigninApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mushroom" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gzkemays.mushroom.signin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gzkemays.mushroom.signin" />
+      <option name="MAIN_CLASS_NAME" value="com.gzkemays.mushroom.signin.SigninApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SigninApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="mushroom" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gzkemays.mushroom_sign.SigninApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.CodeGenerator" />
+      <item itemvalue="JUnit.SigninApplicationTests.contextLoads" />
+      <item itemvalue="JUnit.SigninApplicationTests" />
+      <item itemvalue="Spring Boot.SigninApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SigninApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.SigninApplicationTests" />
+        <item itemvalue="Application.CodeGenerator" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\gzkemays\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dda52747-4651-4431-a2be-dc798559ae01" name="默认更改列表" comment="" />
+      <created>1600345227700</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600345227700</updated>
+      <workItem from="1600345232836" duration="8781000" />
+      <workItem from="1600355156463" duration="14621000" />
+      <workItem from="1600393765111" duration="17325000" />
+      <workItem from="1600427393208" duration="4648000" />
+      <workItem from="1600434483394" duration="542000" />
+      <workItem from="1600489019206" duration="2356000" />
+      <workItem from="1600495896528" duration="2225000" />
+      <workItem from="1600543128134" duration="664000" />
+      <workItem from="1600576270498" duration="3535000" />
+      <workItem from="1600582982561" duration="955000" />
+      <workItem from="1600594982586" duration="8539000" />
+      <workItem from="1600652614232" duration="5720000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="71" key="#Inspections" timestamp="1600579421872">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1600579421872" />
+    <state x="223" y="67" width="1164" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600432371912">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" width="1164" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1600432371912" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1600394650910">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1600394650910" />
+    <state x="535" y="195" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1600346562554">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="535" y="195" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1600346562554" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600359967831">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1600359967831" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1600653224223">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1600653224223" />
+    <state x="549" y="153" key="FileChooserDialogImpl" timestamp="1600615832071">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600615832071" />
+    <state width="1493" height="238" key="GridCell.Tab.0.bottom" timestamp="1600669998476">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600669998476" />
+    <state width="1493" height="238" key="GridCell.Tab.0.center" timestamp="1600669998476">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600669998476" />
+    <state width="1493" height="238" key="GridCell.Tab.0.left" timestamp="1600669998476">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600669998476" />
+    <state width="1493" height="238" key="GridCell.Tab.0.right" timestamp="1600669998476">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600669998476" />
+    <state width="1493" height="238" key="GridCell.Tab.1.bottom" timestamp="1600669201628">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600669201628" />
+    <state width="1493" height="238" key="GridCell.Tab.1.center" timestamp="1600669201628">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1600669201628" />
+    <state width="1493" height="238" key="GridCell.Tab.1.left" timestamp="1600669201628">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1600669201628" />
+    <state width="1493" height="238" key="GridCell.Tab.1.right" timestamp="1600669201628">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1600669201628" />
+    <state x="452" y="145" width="632" height="534" key="find.popup" timestamp="1600653483868">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="452" y="145" width="632" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1600653483868" />
+    <state x="178" y="114" key="new project wizard" timestamp="1600615867951">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="178" y="114" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1600615867951" />
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup" timestamp="1600669201662">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1600669201662" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1600653303957">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1600653303957" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/gzkemays/mushroom/signin/SigninApplicationTests.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/com/gzkemays/mushroom/signin/SigninApplicationTests.java</url>
+          <line>34</line>
+          <properties class="com.gzkemays.mushroom.signin.SigninApplicationTests" method="contextLoads">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

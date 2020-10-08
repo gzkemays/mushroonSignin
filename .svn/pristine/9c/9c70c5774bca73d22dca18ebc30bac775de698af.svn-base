@@ -1,0 +1,55 @@
+# 启动模板缓存
+spring.thymeleaf.cache = false
+# 设置模板编码
+spring.thymeleaf.encoding = utf-8
+# 应用模板的模板模式
+spring.thymeleaf.mode = HTML5
+# 指定模板页面的存放路径( templates 静态资源目录 ),追加 / 表示全部目录.
+spring.thymeleaf.prefix = classpath:/templates/
+# 指定模板页面的后缀
+spring.thymeleaf.suffix = .html
+# 单个上传文件大小限制（默认为 1MB）
+spring.servlet.multipart.max-file-size=10MB
+# 总上传文件大小限制（默认为 10MB）
+spring.servlet.multipart.max-request-size=50MB
+
+# 配置 message 文件路径
+spring.messages.basename=i18n/messages
+# spring boot 默认不开启 restful 分割  —— 此处开启
+spring.mvc.hiddenmethod.filter.enabled=true
+# Mysql 连接配置
+spring.datasource.url= jdbc:mysql://120.79.197.20:3306/mushroom?serverTimezone=Asia/Shanghai&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+spring.datasource.username= root
+spring.datasource.password= 123456
+
+# 修改第三方数据源
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.druid.initial-size=20
+spring.datasource.druid.min-idle=10
+spring.datasource.druid.max-active=100
+
+# 配置 ddl-auto ：
+# 1、create 删除已有的表,重新创建,退出时不删除表.
+# 2、create-drop 在 1 的基础上删除表(表不报错）
+# 3、update 如果启动时数据库表与po中定义的表不一致,则创建表,原数据保留.
+# 4、validate 项目启动表结构进行校验,如果不一致就报错.
+#spring.jpa.hibernate.ddl-auto=update
+#spring.jpa.show-sql=true
+#spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true
+
+
+#配置 MyBatis 的 XML 配置文件路径
+mybatis.mapper-locations=classpath:mapper/*.xml
+#配置 XML 映射文件的指定实体类别名路径
+mybatis.type-aliases-package=com.gzkemays.mushroom_sign.po
+
+# 配置日志
+mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+
+## Redis 服务地址
+#spring.redis.host=127.0.0.1
+## 链接端口
+#spring.redis.port=6379
+## Redis 服务器连接密码(默认为空)
+#spring.redis.password=
+#spring.redis.lettuce.pool.min-idle=1

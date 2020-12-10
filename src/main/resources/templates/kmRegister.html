@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" charset="UTF-8">
+    <title>蘑菇丁打卡 - 椰子鸡特别版</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}" href="css/index.css">
+    <link rel="stylesheet" th:href="@{/webjars/layui/2.5.6/css/layui.css}" href="css/layui.css">
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+    <link rel="icon" th:href="@{/images/yzj.ico}">
+</head>
+<body>
+<div class="index">
+    <div class="layui-anim layui-anim-upbit">
+        <h2>自动打卡 - 椰子鸡特别版之科贸版</h2>
+    </div>
+    <div class="layui-anim layui-anim-upbit">
+        <div id="dialog" class="dialog" style="height: 325px !important;">
+            <h3 style="color: red; font-weight: 800;">基本信息(请自觉填写正确信息)</h3>
+            <form method="post" class="layui-form">
+                <input type="text" id="number" name="number" placeholder="学号(如：18500000000)" class="layui-input">
+                <input type="text" id="address" name="address" placeholder="地址(如：xxx省xxx市xxx区xxx)" class="layui-input">
+                <input type="text" id="longitude" name="longitude" placeholder="经度(广东大为经度！)" class="layui-input">
+                <input type="text" id="latitude" name="latitude" placeholder="维度(小则维度！)" class="layui-input">
+                <b style="color:red;margin: 8px;">
+                    获取地址和经纬度：<a href="http://api.map.baidu.com/lbsapi/getpoint/index.html" target="_blank" style="color: blue;">点我进入</a>
+                </b>
+                <br>
+                <br>
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formSubmit">一键起飞</button>
+                <br>
+                <p style="color:red;">&copy; 2020 椰子鸡集团 版权所有</p>
+
+            </form
+
+
+>
+        </div>
+    </div>
+</div>
+
+<!-- 公告栏 -->
+<div id="borad">
+    <div style="padding: 25px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">
+        <p>蘑菇钉自动签到由椰子鸡集团开发 <br/>每天早上 8:30 自动签到。</p>
+        <br/>
+        <p><b style="color: red">请自觉填写正确信息，如果有身体突发异常情况请马上联系管理员注销自动签到。</b>扫以下二维码进群直接联系管理员！</p>
+        <br/>
+        <p>椰子鸡集团现承包大学软件项目私单，开发人员具有丰富的答辩经验，可一对一指导。有意者直接加群联系群主即可，价格绝对比某宝和其他外包优惠且实在！</p>
+        <br/>
+        <img src="http://img.hwy-study.xyz/YZJ%20%E4%BB%A3%E5%81%9A%E4%BA%8C%E7%BB%B4%E7%A0%81.png" alt="QQ群二维码" style="width: 60%;margin-left: 55px;">
+    </div>
+</div>
+
+<script th:src="@{/webjars/layui/2.5.6/layui.js}"></script>
+<script>
+    layui.use('layer', function(){ //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+        //触发事件
+        var active = {
+            offset: function(othis){
+                var type = othis.data('type')
+                layer.open({
+                    type: 1
+                    ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                    ,id: 'layerDemo'+type //防止重复弹出
+                    ,content: $("#reVip")
+                    ,btnAlign: 'c' //按钮居中
+                    ,shade: 0 //不显示遮罩
+                    ,title: "激活VIP"
+                });
+            }
+        };
+
+        $('#goVip').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+
+    });
+</script>
+<script>
+    var url = window.location.origin;
+    // 测试环境下不用 pj
+    var pj = "/mushroom/signin/";
+    // var pj = "";
+    layui.use(['layer', 'form', 'element'], function(){
+        var layer = layui.layer
+            ,form = layui.form
+            ,element = layui.element
+        // layer.msg('欢迎来到椰子鸡集团蘑菇钉打卡注册平台，填写邀请码即可自动每周发布周报。', {
+        //     offset: 'auto',
+        //     time: 3000
+        // });
+
+        layer.open({
+            type: 1
+            ,title: false //不显示标题栏
+            ,closeBtn: false
+            ,offset: 'auto'
+            ,area: '350px;'
+            ,shade: 0.8
+            ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+            ,btn: ['我已经知道了']
+            ,btnAlign: 'c'
+            ,moveType: 1 //拖拽模式，0或者1
+            ,content: $("#borad")
+        });
+        form.render();
+
+        // 监听提交
+        form.on('submit(formSubmit)', function(data){
+            let re = /[^\u4E00-\u9FA5]/;
+            let week = /^第\d{1,2}周$/;
+            let tip = "";
+
+            let {address, number} = data.field;
+            if (number.length < 11) {
+                tip = "请输入正确的学号！"
+            } else if (address.indexOf("省") === -1 || address.indexOf("市") === -1 || address.indexOf("区") === -1) {
+                tip = "请地址按照省市区的格式填写完整！"
+            }
+            if (tip === "") {
+                $.ajax({
+                    url: url + pj + "/regKm",
+                    method: "post",
+                    data: data.field,
+                    success: (res) => {
+                        if (res.code !== 1) layer.msg(res.msg)
+                        else layer.msg(res.data)
+                    }
+                })
+            } else {
+                layer.msg(tip);
+            }
+            return false;
+        });
+
+    });
+
+</script>
+</body>
+</html>

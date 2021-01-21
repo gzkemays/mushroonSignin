@@ -119,14 +119,15 @@ public class HttpGetServiceImpl implements HttpGetService {
         CloseableHttpClient httpClient = HttpUtils.getIgnoeSSLClient();
         CloseableHttpResponse response;
         RequestConfig requestConfig = RequestConfig.custom()
-                                                   .setSocketTimeout(20000)
-                                                   .setConnectTimeout(20000)
-                                                   .setConnectionRequestTimeout(20000)
+                                                   .setSocketTimeout(50000)
+                                                   .setConnectTimeout(50000)
+                                                   .setConnectionRequestTimeout(50000)
                                                    .build();
         String result = "";
         try {
             HttpPost httpPost = MuHttpPost.getPost(method,json.toString(),key);
             httpPost.setConfig(requestConfig);
+
             response = httpClient.execute(httpPost);
             result = EntityUtils.toString(response.getEntity(),"utf-8");
             response.close();
@@ -141,7 +142,7 @@ public class HttpGetServiceImpl implements HttpGetService {
             e.printStackTrace();
         }
         System.out.println("result = " + result);
-        if (result.contains("504 Gateway Time-out") || result.contains("502 Gateway")) {
+        if (result.contains("Gateway")) {
             System.out.println("Get GateWay Error");
             return new JSONObject[]{JSONObject.parseObject("{\"msg\":\"Gateway\"}")};
         }

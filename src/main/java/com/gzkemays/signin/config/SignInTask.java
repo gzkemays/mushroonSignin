@@ -27,26 +27,30 @@ public class SignInTask {
     @Autowired
     private KmSingleService kmSingleService;
 
-    // 蘑菇钉 - 上班打卡
-    @Scheduled(cron = "0 30 08 * * ?")
-    private void MushroomSignInTask () throws Exception {
-        muSignInService.reDuty("START");
-        System.out.println("\"打卡定时器\" = " + "上班打卡");
-    }
-
-    // 蘑菇钉 - 下班打卡
-    @Scheduled(cron = "0 30 17 * * ?")
-    private void MushroomSignOutTask () throws Exception {
-        muSignInService.reDuty("END");
-        System.out.println("\"打卡定时器\" = " + "下班打卡");
-    }
-
-    // 蘑菇钉 - 会员版 - 周报打卡
-    @Scheduled(cron = "0 30 11 ? * MON")
-    private void MushroomVipDisposeWeek () throws Exception {
-        muSignInService.weekArticle();
-        System.out.println("\"VIP 周报填写\" = " + "VIP 周报填写");
-    }
+//    // 蘑菇钉 - 上班打卡
+//    @Scheduled(cron = "0 30 08 * * ?")
+//    private void MushroomSignInTask () {
+//        try {
+//            muSignInService.reDuty("START");
+//            System.out.println("\"打卡定时器\" = " + "上班打卡");
+//        } catch (Exception e) {
+//            MushroomSignInTask();
+//        }
+//    }
+//
+//    // 蘑菇钉 - 下班打卡
+//    @Scheduled(cron = "0 30 17 * * ?")
+//    private void MushroomSignOutTask () throws Exception {
+//        muSignInService.reDuty("END");
+//        System.out.println("\"打卡定时器\" = " + "下班打卡");
+//    }
+//
+//    // 蘑菇钉 - 会员版 - 周报打卡
+//    @Scheduled(cron = "0 30 11 ? * MON")
+//    private void MushroomVipDisposeWeek () throws Exception {
+//        muSignInService.weekArticle();
+//        System.out.println("\"VIP 周报填写\" = " + "VIP 周报填写");
+//    }
 
     // 科贸打卡
     @Scheduled(cron = "0 0 08 * * ?")

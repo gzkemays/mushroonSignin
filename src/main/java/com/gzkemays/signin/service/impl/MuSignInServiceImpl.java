@@ -94,7 +94,6 @@ public class MuSignInServiceImpl implements MuSignInService {
             if (user != null) {
                 BeanUtils.copyProperties(user,muSignInVO);
                 // 登陆打卡
-
                 httpGetService.getSignIn(muSignInVO,token);
                 // 更新打卡状态
                 muUserService.updateState(muUser.getPhone());

@@ -81,9 +81,9 @@
 </script>
 <script>
     var url = window.location.origin;
-    // 测试环境下不用 pj
-    var pj = "/mushroom/signin/";
-    // var pj = "";
+    // 测试环境下用 pj = "/"
+    // var pj = "/mushroom/signin/";
+    var pj = "/";
     layui.use(['layer', 'form', 'element'], function(){
         var layer = layui.layer
             ,form = layui.form

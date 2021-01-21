@@ -11,6 +11,7 @@ import com.gzkemays.signin.po.vo.KmSinglyVO;
 import com.gzkemays.signin.service.*;
 import com.gzkemays.signin.utils.MaysDataParse;
 import com.gzkemays.signin.utils.MaysRequest;
+import com.gzkemays.signin.utils.MuArticleUtils;
 import com.gzkemays.signin.utils.MuVipCodeUtils;
 
 import org.apache.http.client.HttpClient;
@@ -230,7 +231,7 @@ class SigninApplicationTests {
      * 上班打卡测试
      */
     @Test
-    void GoSign() throws Exception {
+    void GoSign()  throws Exception {
         muSignInService.reDuty("START");
         System.out.println("\"打卡定时器\" = " + "上班打卡");
     }
@@ -247,15 +248,38 @@ class SigninApplicationTests {
     @Test
     void TestGateWayError () {
         String result = "<html>\n" +
-                "<head><title>504 Gateway Time-out</title></head>\n" +
+                "<head><title>502 Bad Gateway</title></head>\n" +
                 "<body bgcolor=\"white\">\n" +
-                "<center><h1>504 Gateway Time-out</h1></center>\n" +
+                "<center><h1>502 Bad Gateway</h1></center>\n" +
                 "<hr><center>nginx</center>\n" +
                 "</body>\n" +
                 "</html>\n";
-        if (result.contains("504 Gateway Time-out")) {
+        if (result.contains("504")|| result.contains("502")) {
             JSONObject[] jsonObjects = {JSONObject.parseObject("{\"msg\":\"timeout\"}")};
             System.out.println(jsonObjects[0].getString("msg"));
         }
+    }
+
+    @Test
+    void kmSigin() throws Exception {
+        KmSingle single = kmSingleService.getSingle();
+        // 如果数据库没有初始数据则更新。
+        if (single == null) {
+            KmSinglyVO vo = kmSignInService.getSingleMsg();
+            kmSingleService.updateSingle(vo);
+        }
+        single = kmSingleService.getSingle();
+        KmSinglyVO singlyVO = new KmSinglyVO();
+        BeanUtils.copyProperties(single,singlyVO);
+        String token = kmSignInService.getToken(singlyVO);
+        List<KmUser> list = kmUserService.getAllUserMsg();
+        for (KmUser user : list) {
+            kmSignInService.getKmSignIn(user, token);
+        }
+    }
+
+    @Test
+    void details() {
+        MuArticleUtils.muArticleGenerator("实习",2000);
     }
 }
